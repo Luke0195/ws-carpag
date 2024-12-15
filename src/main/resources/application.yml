@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: app
+  data:
+    mongodb:
+      authentication-database: admin
+      username: ${DB_USERNAME | root}
+      password: ${DB_PASSWORD | root}
+      database: carpag
+      port: ${DB_PORT | 27017}
+      host: ${DB_HOST | localhost}
+      auto-index-creation: true
