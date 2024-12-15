@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.carpag</groupId>
 	<artifactId>app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>app</name>
 	<description>CarPag backendapplication</description>
 	<url/>
@@ -76,6 +76,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
