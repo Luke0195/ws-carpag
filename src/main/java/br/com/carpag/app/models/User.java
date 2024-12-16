@@ -1,5 +1,6 @@
 package br.com.carpag.app.models;
 
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -9,6 +10,11 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 @Document(collection = "users")
 public class User implements Serializable {
 
