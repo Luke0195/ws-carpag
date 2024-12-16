@@ -2,8 +2,8 @@
 > ### Casos de Sucesso 
 ✅
  
-1. [ ] Recebe uma requisição do tipo <b> **POST** </b>, na rota api/users.
-2. [ ] Valida os dados obrigatórios **nome**, **email**.
+1. ✅ Recebe uma requisição do tipo <b> **POST** </b>, na rota api/users.
+2. ✅ Valida os dados obrigatórios **nome**, **email**.
 3. [ ] Valida se o **email** informado é valido.
 4. [ ] Valida se o **email** já está cadastrado no banco de dados.
 5. [ ] Cria um usuário com os dados informados.

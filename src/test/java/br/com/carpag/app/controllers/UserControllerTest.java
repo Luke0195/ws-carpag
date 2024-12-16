@@ -12,8 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -62,6 +64,19 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isBadRequest());
+    }
+
+    @DisplayName("POST - Should returns 400 if invalid email is provided")
+    @Test
+    void shouldReturnsBadRequestWhenInvalidEmailIsProvided() throws Exception{
+      UserRequestDto requestDto = new UserRequestDto("any_name", "invalid_email");
+      String jsonBody = mapDataToString(requestDto);
+      ResultActions resultActions = mockMvc.
+                perform(post("/users").contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonBody)
+                        .accept(MediaType.APPLICATION_JSON)
+                );
+      resultActions.andExpect(status().isBadRequest());
     }
 
 
