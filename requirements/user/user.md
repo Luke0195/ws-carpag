@@ -12,9 +12,9 @@
 
 > ### Exceções 
 
-1. [ ] Retorna erro **404** se API não existir.
-2. [ ] Retorna erro **400** se o nome e email não forem informados.
-3. [ ] Retorna erro **400** se o email fornecido não for valido.
+1. ✅ Retorna erro **404** se API não existir.
+2. ✅ Retorna erro **400** se o nome e email não forem informados.
+3. ✅ Retorna erro **400** se o email fornecido não for valido.
 4. [ ] Retorna erro **400** se o e-mail informado já estiver sendo usado.
 5. [ ] Retorna erro **500** se der erro ao criar uma conta do usuário.
 6. [ ] Retorna erro **500** se der erro tentar carregar a lista do usuários. 
