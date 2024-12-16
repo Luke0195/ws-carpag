@@ -12,10 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.assertj.MockMvcTester;
-import org.springframework.test.web.servlet.result.RequestResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -46,7 +43,7 @@ class UserControllerTest {
     @Test
     void shouldReturnsBadRequestWhenNoNameIsProvided() throws Exception{
         UserRequestDto requestDto = new UserRequestDto(null, "anymail@mail.com");
-        String jsonBody = objectMapper.writeValueAsString(requestDto);
+        String jsonBody = mapDataToString(requestDto);
         ResultActions resultActions = mockMvc.perform(post(ROUTE_NAME)
                 .content(jsonBody)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -54,4 +51,22 @@ class UserControllerTest {
         );
         resultActions.andExpect(status().isBadRequest());
     }
+
+    @DisplayName("POST - Should return 400 if no email is provided")
+    @Test
+    void shouldReturnsBadRequestWhenNoEmailIsProvided() throws Exception{
+        UserRequestDto requestDto = new UserRequestDto("any_name", null);
+        String jsonBody = mapDataToString(requestDto);
+        ResultActions resultActions = mockMvc.perform(post(ROUTE_NAME)
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+        resultActions.andExpect(status().isBadRequest());
+    }
+
+
+    public  String mapDataToString(Object object) throws Exception{
+        return objectMapper.writeValueAsString(object);
+    }
+
 }
