@@ -1,6 +1,11 @@
 package br.com.carpag.app.models;
 
-import lombok.*;
+import br.com.carpag.app.dtos.request.UserRequestDto;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Builder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -26,4 +31,8 @@ public class User implements Serializable {
     private Instant createdAt;
     @LastModifiedBy
     private Instant updatedAt;
+
+    public static User parseToEntity(UserRequestDto userRequestDto){
+        return User.builder().name(userRequestDto.name()).email(userRequestDto.email()).build();
+    }
 }
