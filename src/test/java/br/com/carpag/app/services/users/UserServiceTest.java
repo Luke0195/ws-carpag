@@ -1,6 +1,7 @@
 package br.com.carpag.app.services.users;
 
 import br.com.carpag.app.dtos.request.UserRequestDto;
+import br.com.carpag.app.dtos.response.UserResponseDto;
 import br.com.carpag.app.factories.UserFactory;
 import br.com.carpag.app.models.User;
 import br.com.carpag.app.repositories.UserRepository;
@@ -15,6 +16,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.time.Instant;
+import java.util.Optional;
+import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("dev")
@@ -39,7 +44,7 @@ class UserServiceTest {
 
     }
 
-    @DisplayName("addUserUseCase should returns an exception when user e-mail already exists")
+    @DisplayName("addUserUseCase should returns an ResourceAlredyExistsException when user e-mail already exists")
     @Test
     void addUserUseCaseShouldReturnsAnExceptionWhenUserEmailAlreadyExists(){
         Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenThrow(ResourceAlreadyExistsException.class);
@@ -48,6 +53,15 @@ class UserServiceTest {
         });
     }
 
-
+    @DisplayName("addUserUseCase should returns an user when valid data is provided")
+    @Test
+    void addUserUseCaseShouldReturnsAnUserWhenValidDataIsProvided(){
+        Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenReturn(Optional.empty());
+        Mockito.when(userRepository.save(Mockito.any())).thenReturn(new User(UUID.randomUUID(), "any_name", "any_email@mail.com", Instant.now(), Instant.now()));
+        UserResponseDto userResponseDto = userService.addUser(userRequestDto);
+        Assertions.assertNotNull(userResponseDto.id());
+        Assertions.assertEquals("any_name", userResponseDto.name());
+        Assertions.assertEquals("any_email@mail.com", userResponseDto.email());
+    }
 
 }

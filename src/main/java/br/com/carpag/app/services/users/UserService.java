@@ -22,8 +22,9 @@ public class UserService implements AddUserUseCase {
     public UserResponseDto addUser(UserRequestDto userRequestDto) {
       Optional<User> findUserByEmail = userRepository.findByEmail(userRequestDto.email());
       if(findUserByEmail.isPresent()) throw new ResourceAlreadyExistsException("This email is already taken");
-      return null;
-
+      User user = User.parseToEntity(userRequestDto);
+      user = userRepository.save(user);
+      return UserResponseDto.toDto(user);
     }
 
 }
