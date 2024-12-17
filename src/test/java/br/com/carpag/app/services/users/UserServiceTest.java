@@ -4,6 +4,7 @@ import br.com.carpag.app.dtos.request.UserRequestDto;
 import br.com.carpag.app.factories.UserFactory;
 import br.com.carpag.app.models.User;
 import br.com.carpag.app.repositories.UserRepository;
+import br.com.carpag.app.services.exceptions.ResourceAlreadyExistsException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,14 +36,14 @@ class UserServiceTest {
     @BeforeEach
     void setup(){
         setupValues();
+
     }
 
     @DisplayName("addUserUseCase should returns an exception when user e-mail already exists")
     @Test
     void addUserUseCaseShouldReturnsAnExceptionWhenUserEmailAlreadyExists(){
-        Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenThrow(RuntimeException.class);
-        UserRequestDto userRequestDto = new UserRequestDto("any_name", "valid_email@mail.com");
-        Assertions.assertThrows(RuntimeException.class, () -> {
+        Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenThrow(ResourceAlreadyExistsException.class);
+        Assertions.assertThrows(ResourceAlreadyExistsException.class, () -> {
             userService.addUser(userRequestDto);
         });
     }
