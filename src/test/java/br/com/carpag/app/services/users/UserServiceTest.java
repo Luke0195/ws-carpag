@@ -64,4 +64,14 @@ class UserServiceTest {
         Assertions.assertEquals("any_email@mail.com", userResponseDto.email());
     }
 
+
+    @DisplayName("addUserUseCase should throws exception when add throws")
+    @Test
+    void addUserUseCaseShouldThrowsExceptionWhenSaveThrows(){
+        Mockito.when(userRepository.save(Mockito.any())).thenThrow(RuntimeException.class);
+        Assertions.assertThrows(RuntimeException.class, () -> {
+           userService.addUser(userRequestDto);
+        });
+    }
+
 }
