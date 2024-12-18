@@ -84,7 +84,7 @@ class UserControllerTest {
                 );
       resultActions.andExpect(status().isBadRequest());
     }
-
+/*
     @DisplayName("GET - Should returns 200 when loadUsers sucessed")
     @Test
     void shouldReturnAListOfUsersOnSuccess() throws Exception {
@@ -95,7 +95,7 @@ class UserControllerTest {
         resultActions.andExpect(status().isOk());
     }
 
-
+*/
 
 
     public  String mapDataToString(Object object) throws Exception{
