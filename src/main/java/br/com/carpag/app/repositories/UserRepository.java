@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, UUID> {
+public interface UserRepository extends MongoRepository<User, String> {
 
     @Query(value = "{'email': ?0}")
     Optional<User> findByEmail(String email);

@@ -24,7 +24,7 @@ import java.util.UUID;
 public class User implements Serializable {
 
     @Id
-    private UUID id;
+    private String id;
     private String name;
     private String email;
     @CreatedDate

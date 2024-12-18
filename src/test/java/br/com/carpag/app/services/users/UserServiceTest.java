@@ -44,7 +44,7 @@ class UserServiceTest {
 
     }
 
-    @DisplayName("addUserUseCase should returns an ResourceAlredyExistsException when user e-mail already exists")
+    @DisplayName("addUserUseCase should returns an ResourceAlreadyExistsException when user e-mail already exists")
     @Test
     void addUserUseCaseShouldReturnsAnExceptionWhenUserEmailAlreadyExists(){
         Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenThrow(ResourceAlreadyExistsException.class);
@@ -53,11 +53,11 @@ class UserServiceTest {
         });
     }
 
-    @DisplayName("addUserUseCase should returns an user when valid data is provided")
+    @DisplayName("addUser should returns an user when valid data is provided")
     @Test
     void addUserUseCaseShouldReturnsAnUserWhenValidDataIsProvided(){
         Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenReturn(Optional.empty());
-        Mockito.when(userRepository.save(Mockito.any())).thenReturn(new User(UUID.randomUUID(), "any_name", "any_email@mail.com", Instant.now(), Instant.now()));
+        Mockito.when(userRepository.save(Mockito.any())).thenReturn(new User("any_id", "any_name", "any_email@mail.com", Instant.now(), Instant.now()));
         UserResponseDto userResponseDto = userService.addUser(userRequestDto);
         Assertions.assertNotNull(userResponseDto.id());
         Assertions.assertEquals("any_name", userResponseDto.name());
@@ -65,7 +65,7 @@ class UserServiceTest {
     }
 
 
-    @DisplayName("addUserUseCase should throws exception when add throws")
+    @DisplayName("addUser should throws exception when addUser throws")
     @Test
     void addUserUseCaseShouldThrowsExceptionWhenSaveThrows(){
         Mockito.when(userRepository.save(Mockito.any())).thenThrow(RuntimeException.class);

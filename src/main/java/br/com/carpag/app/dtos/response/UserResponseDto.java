@@ -5,9 +5,14 @@ import br.com.carpag.app.models.User;
 import java.time.Instant;
 import java.util.UUID;
 
-public record UserResponseDto(UUID id, String name, String email, Instant createdAt, Instant updatedAt) {
+public record UserResponseDto(
+        String id,
+        String name,
+        String email,
+        Instant createdAt,
+        Instant updatedAt) {
     @Override
-    public UUID id() {
+    public String id() {
         return id;
     }
 

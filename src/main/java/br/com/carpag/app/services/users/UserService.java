@@ -6,17 +6,18 @@ import br.com.carpag.app.models.User;
 import br.com.carpag.app.repositories.UserRepository;
 import br.com.carpag.app.services.exceptions.ResourceAlreadyExistsException;
 import br.com.carpag.app.services.users.usecases.AddUserUseCase;
+import br.com.carpag.app.services.users.usecases.LoadUsers;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService implements AddUserUseCase {
+public class UserService implements AddUserUseCase, LoadUsers {
 
     private final UserRepository userRepository;
-
 
     @Override
     public UserResponseDto addUser(UserRequestDto userRequestDto) {
@@ -27,4 +28,9 @@ public class UserService implements AddUserUseCase {
       return UserResponseDto.toDto(user);
     }
 
+
+    @Override
+    public List<UserResponseDto> loadUsers() {
+        return List.of();
+    }
 }
