@@ -31,6 +31,6 @@ public class UserService implements AddUserUseCase, LoadUsers {
 
     @Override
     public List<UserResponseDto> loadUsers() {
-        return List.of();
+        return userRepository.findAll().stream().map(UserResponseDto::toDto).toList();
     }
 }

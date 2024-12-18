@@ -18,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -72,6 +73,14 @@ class UserServiceTest {
         Assertions.assertThrows(RuntimeException.class, () -> {
            userService.addUser(userRequestDto);
         });
+    }
+
+    @DisplayName("loadUsers should returns a list of users")
+    @Test
+    void loadShouldReturnsAListOfUsers(){
+        Mockito.when(userRepository.findAll()).thenReturn(List.of(User.parseToEntity(UserFactory.makeUserRequestDto())));
+        List<User> users = userRepository.findAll();
+        Assertions.assertEquals(1, users.size());
     }
 
 }

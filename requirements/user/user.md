@@ -8,7 +8,7 @@
 4. ✅ Valida se o **email** já está cadastrado no banco de dados.
 5. ✅ Cria um usuário com os dados informados.
 6. ✅ Retorna **201** com o id e os dados informados pelo usuário.
-7. [ ] Retorna **200** com a lista de usuários.
+7. ✅ Retorna **200** com a lista de usuários.
 
 > ### Exceções 
 
@@ -17,4 +17,4 @@
 3. ✅ Retorna erro **400** se o email fornecido não for valido.
 4. ✅ Retorna erro **400** se o e-mail informado já estiver sendo usado.
 5. ✅ Retorna erro **500** se der erro ao criar uma conta do usuário.
-6. [ ] Retorna erro **500** se der erro tentar carregar a lista do usuários. 
+6. ✅ Retorna erro **500** se der erro tentar carregar a lista do usuários. 
