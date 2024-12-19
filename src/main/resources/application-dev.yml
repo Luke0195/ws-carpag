@@ -7,9 +7,9 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      username: ${DB_USERNAME:root}
-      password: ${DB_PASSWORD:root}
+      username: root
+      password: root
       database: carpag
       port: 27017
-      host: ${DB_HOST:localhost}
+      host: mongodb://root:root@db:27017/carpag
       auto-index-creation: true
